@@ -2,9 +2,9 @@ check host golang_<%= @application_name %> with address 127.0.0.1
   start program = "/bin/bash -c 'cd <%= @deploy[:deploy_to] %>/current ; ./server 2>> <%= @deploy[:deploy_to]%>/shared/log/node.stderr.log 1>> <%= @deploy[:deploy_to]%>/shared/log/node.stdout.log'"
   stop program = "/usr/bin/pkill -f 'server'"
   <% if @deploy[:ssl_support] -%>
-  if failed port 8443 %> type TCPSSL protocol HTTP
+  if failed port 8443 type TCPSSL protocol HTTP
   <% else -%>
-  if failed port 8000 %> protocol HTTP
+  if failed port 8000 protocol HTTP
   <% end -%>
     request /
     with timeout 10 seconds
