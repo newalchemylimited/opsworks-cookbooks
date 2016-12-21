@@ -15,4 +15,12 @@ node[:deploy].each do |application, deploy|
     deploy_data deploy
     app application
   end
+
+  application_environment_file do
+    user deploy[:user]
+    group deploy[:group]
+    path ::File.join(deploy[:deploy_to], "shared")
+    environment_variables deploy[:environment_variables]
+  end
+
 end
