@@ -108,6 +108,10 @@ node[:deploy].each do |application, deploy|
   default[:deploy][application][:ssl_support] = false
   default[:deploy][application][:auto_npm_install_on_deploy] = true
 
+  # server
+  default[:deploy][application][:server][:restart_command] = "monit restart golang-#{application}"
+  default[:deploy][application][:server][:stop_command] = "monit stop golang-#{application}"
+
   # nodejs
   default[:deploy][application][:nodejs][:restart_command] = "monit restart node_web_app_#{application}"
   default[:deploy][application][:nodejs][:stop_command] = "monit stop node_web_app_#{application}"
